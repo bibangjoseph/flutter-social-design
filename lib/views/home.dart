@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socialapp/config/color.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -71,12 +72,6 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       addStory(),
-                      buildStory(imageUrl: 'assets/images/user-3.jpg'),
-                      buildStory(imageUrl: 'assets/images/user.jpeg'),
-                      buildStory(imageUrl: 'assets/images/user-2.jpg'),
-                      buildStory(imageUrl: 'assets/images/user.jpeg'),
-                      buildStory(imageUrl: 'assets/images/user.jpeg'),
-                      buildStory(imageUrl: 'assets/images/user.jpeg'),
                     ],
                   ),
                 ),
@@ -115,25 +110,11 @@ class _HomePageState extends State<HomePage> {
             )),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: ColorApp.pink,
         onPressed: () {
           Navigator.pushNamed(context, '/chat');
         },
         child: const Icon(Icons.chat_bubble),
-      ),
-    );
-  }
-
-  Widget buildStory({imageUrl}) {
-    return Container(
-      margin: const EdgeInsets.only(left: 10),
-      height: 60,
-      width: 60,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          border: Border.all(width: 3, color: Colors.pink.shade300)),
-      child: CircleAvatar(
-        radius: 20,
-        backgroundImage: AssetImage(imageUrl),
       ),
     );
   }
@@ -148,7 +129,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
               width: double.infinity,
               height: 250,
-              child: Image.asset(imageFeed, fit: BoxFit.fill)),
+              child: Image.asset(imageFeed, fit: BoxFit.cover)),
           Container(
             padding: const EdgeInsets.all(20),
             child: Row(
