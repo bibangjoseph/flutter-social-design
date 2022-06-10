@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:socialapp/config/color.dart';
+import 'package:socialapp/data/AppData.dart';
+import 'package:socialapp/widget/storyWidget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -67,43 +69,50 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 50),
                 // ignore: sized_box_for_whitespace
                 Container(
-                  height: 60,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      addStory(),
-                    ],
-                  ),
-                ),
+                    height: 60,
+                    child: Row(
+                      children: [
+                        addStory(),
+                        Expanded(
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: AppData.stories.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return storyWidget(
+                                    imageUrl: AppData.stories[index].image);
+                              }),
+                        )
+                      ],
+                    )),
                 const SizedBox(height: 40),
 
                 Column(
                   children: [
-                    buildFeed(
-                        imageFeed: 'assets/feeds/feed-01.jpg',
-                        imageUser: 'assets/images/user-2.jpg',
-                        userName: 'Joseph Donovan',
-                        time: '18 min ago'),
-                    buildFeed(
-                        imageFeed: 'assets/feeds/feed-02.jpg',
-                        imageUser: 'assets/images/user-3.jpg',
-                        userName: 'Monica Julice',
-                        time: '18 min ago'),
-                    buildFeed(
-                        imageFeed: 'assets/feeds/feed-03.png',
-                        imageUser: 'assets/images/user-2.jpg',
-                        userName: 'Joseph Donovan',
-                        time: '18 min ago'),
-                    buildFeed(
-                        imageFeed: 'assets/feeds/feed-04.jpg',
-                        imageUser: 'assets/images/user-3.jpg',
-                        userName: 'Monica Julice',
-                        time: '18 min ago'),
-                    buildFeed(
-                        imageFeed: 'assets/feeds/feed-05.jpg',
-                        imageUser: 'assets/images/user-2.jpg',
-                        userName: 'Joseph Donovan',
-                        time: '18 min ago'),
+                    // buildFeed(
+                    //     imageFeed: 'assets/feeds/feed-01.jpg',
+                    //     imageUser: 'assets/images/user-2.jpg',
+                    //     userName: 'Joseph Donovan',
+                    //     time: '18 min ago'),
+                    // buildFeed(
+                    //     imageFeed: 'assets/feeds/feed-02.jpg',
+                    //     imageUser: 'assets/images/user-3.jpg',
+                    //     userName: 'Monica Julice',
+                    //     time: '18 min ago'),
+                    // buildFeed(
+                    //     imageFeed: 'assets/feeds/feed-03.png',
+                    //     imageUser: 'assets/images/user-2.jpg',
+                    //     userName: 'Joseph Donovan',
+                    //     time: '18 min ago'),
+                    // buildFeed(
+                    //     imageFeed: 'assets/feeds/feed-04.jpg',
+                    //     imageUser: 'assets/images/user-3.jpg',
+                    //     userName: 'Monica Julice',
+                    //     time: '18 min ago'),
+                    // buildFeed(
+                    //     imageFeed: 'assets/feeds/feed-05.jpg',
+                    //     imageUser: 'assets/images/user-2.jpg',
+                    //     userName: 'Joseph Donovan',
+                    //     time: '18 min ago'),
                   ],
                 )
               ],
@@ -116,64 +125,6 @@ class _HomePageState extends State<HomePage> {
         },
         child: const Icon(Icons.chat_bubble),
       ),
-    );
-  }
-
-  Widget buildFeed({imageFeed, imageUser, userName, time}) {
-    return Card(
-      semanticContainer: true,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      // ignore: sort_child_properties_last
-      child: Column(
-        children: [
-          SizedBox(
-              width: double.infinity,
-              height: 250,
-              child: Image.asset(imageFeed, fit: BoxFit.cover)),
-          Container(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage(imageUser),
-                    ),
-                    const SizedBox(width: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          userName,
-                          style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          time,
-                          style: const TextStyle(color: Colors.grey),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                const Icon(
-                  Icons.more_vert_outlined,
-                  size: 25,
-                  color: Colors.grey,
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      elevation: 5,
-      margin: const EdgeInsets.all(10),
     );
   }
 

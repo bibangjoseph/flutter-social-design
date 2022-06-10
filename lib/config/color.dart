@@ -4,4 +4,5 @@ import 'package:flutter/material.dart';
 
 class ColorApp {
   static Color pink = Color(0xFFFF7DAC);
+  static Color bg = Color(0xFFF9FBFF);
 }

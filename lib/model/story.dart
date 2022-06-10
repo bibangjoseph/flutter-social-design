@@ -1,6 +1,6 @@
 class Story {
   late int id;
-  late String imageStory;
+  late String image;
 
-  Story(this.id, this.imageStory);
+  Story({required this.id, required this.image});
 }

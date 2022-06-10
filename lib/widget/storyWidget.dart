@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../config/color.dart';
 
-Widget buildStory({imageUrl}) {
+Widget storyWidget({imageUrl}) {
   return Container(
     margin: const EdgeInsets.only(left: 10),
     height: 60,
